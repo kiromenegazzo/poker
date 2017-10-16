@@ -67,49 +67,6 @@ body{
     border-radius: 1px;
   }
 }
-.preload{
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  background-color: #003237;
-  &__text{
-    margin-bottom: 30px;
-    font-size: 20px;
-    color: #fff;
-  }
-}
-.progress{
-  &__bar{
-    position: relative;
-    width: 80%;
-    height: 1px;
-    margin-right: auto;
-    margin-left: auto;
-    font-size: 12px;
-    background-color: #3b3b3b;
-    &:after{
-      content: attr(data-percent) '%';
-      position: relative;
-      top: 7px;
-      color: #a1a1a1;
-    }
-  }
-  &__line{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: #fff;
-  }
-}
 .popup{
   position: fixed;
   display: flex;
@@ -170,13 +127,50 @@ body{
     font-style: italic;
   }
 }
-@media screen and (orientation: portrait){
-  .container{
-    bottom: 2%;
-    left: 5%;
-    width: 90%;
-    height: 82%;
+.preload{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: #003237;
+  &__text{
+    margin-bottom: 30px;
+    font-size: 20px;
+    color: #fff;
   }
+}
+.progress{
+  &__bar{
+    position: relative;
+    width: 80%;
+    height: 1px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 12px;
+    background-color: #3b3b3b;
+    &:after{
+      content: attr(data-percent) '%';
+      position: relative;
+      top: 7px;
+      color: #a1a1a1;
+    }
+  }
+  &__line{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #fff;
+  }
+}
+@media screen and (orientation: portrait){
   .title{
     top: 6%;
     left: 5%;
@@ -186,9 +180,12 @@ body{
     top: 13%;
     left: 5%;
     font-size: 3vmin;
-    &__more{
-      display: none;
-    }
+  }
+  .container{
+    bottom: 2%;
+    left: 5%;
+    width: 90%;
+    height: 82%;
   }
   .card{
     &__item{
@@ -245,12 +242,6 @@ body{
   }
 }
 @media screen and (orientation: landscape){
-  .container{
-    bottom: 4%;
-    left: 4%;
-    width: 92%;
-    height: 70%;
-  }
   .title{
     top: 3%;
     left: 4%;
@@ -261,9 +252,11 @@ body{
     left: 4%;
     font-size: 3.8vmin;
   }
-  .chips{
-    width: 23%;
-    height: 23%;
+  .container{
+    bottom: 4%;
+    left: 4%;
+    width: 92%;
+    height: 70%;
   }
   .card{
     &__item{
