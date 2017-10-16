@@ -14,19 +14,26 @@ body {
 }
 .bg {
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   width: 100%;
   height: 100%;
   background-color: #192f31;
 }
-.bg > div {
-  position: absolute;
-}
 .title {
   width: 90%;
   font-weight: bold;
+  text-align: left;
+  line-height: 1.2;
   color: #fff;
 }
 .subtitle {
+  align-self: flex-start;
+  width: 90%;
+  margin-left: 5%;
+  text-align: left;
   color: #cbfff4;
 }
 .container {
@@ -191,18 +198,13 @@ body {
 }
 @media screen and (orientation: portrait) {
   .title {
-    top: 6%;
-    left: 5%;
     font-size: 7vmin;
   }
   .subtitle {
-    top: 13%;
-    left: 5%;
     font-size: 3vmin;
   }
   .container {
-    bottom: 2%;
-    left: 5%;
+    margin-bottom: 2%;
     width: 90%;
     height: 82%;
   }
@@ -262,18 +264,12 @@ body {
 }
 @media screen and (orientation: landscape) {
   .title {
-    top: 3%;
-    left: 4%;
     font-size: 10vmin;
   }
   .subtitle {
-    top: 15%;
-    left: 4%;
     font-size: 3.8vmin;
   }
   .container {
-    bottom: 4%;
-    left: 4%;
     width: 92%;
     height: 70%;
   }
