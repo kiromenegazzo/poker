@@ -87,8 +87,8 @@ const Poker = function() {
     };
 
     this.setTransformOrigin = (transformOriginX, transformOriginY) => {
-        self.popup.style.cssText = `transform-origin: ${transformOriginX}% ${transformOriginY}% 0;
-                                    -webkit-transform-origin: ${transformOriginX}% ${transformOriginY}% 0;`;
+        self.popup.style.cssText = `-webkit-transform-origin: ${transformOriginX}% ${transformOriginY}% 0;
+                                    transform-origin: ${transformOriginX}% ${transformOriginY}% 0;`;
 
     };
 
@@ -102,7 +102,9 @@ const Poker = function() {
             images[n].onload = () => {
                 imagesCounter++;
                 self.showPercent(imagesCounter, imagesNumber);
-                self.setCardSize();
+                if(self.images.length == imagesCounter) {
+                    self.setCardSize();
+                }
             }
         }
     };
