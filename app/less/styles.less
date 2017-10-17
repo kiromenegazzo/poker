@@ -7,7 +7,8 @@
 body{
   width: 100%;
   height: 100%;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Segoe UI', Helvetica, serif;
+  -webkit-text-size-adjust: none;
   text-size-adjust: none;
   user-select: none;
   touch-action: none;
@@ -26,23 +27,23 @@ body{
   justify-content: space-around;
   width: 100%;
   height: 100%;
+  text-align: center;
   background-color: #192f31;
 }
 .title{
   width: 90%;
+  margin-top: 2.5%;
   font-weight: bold;
-  text-align: left;
   line-height: 1.2;
   color: #fff;
 }
 .subtitle{
-  align-self: flex-start;
   width: 90%;
-  margin-left: 5%;
-  text-align: left;
   color: #cbfff4;
 }
 .container{
+  width: 95%;
+  margin-bottom: 2%;
   border: 2px solid #fef6c6;
 }
 .card{
@@ -118,11 +119,11 @@ body{
     &:before{
       content: '';
       position: absolute;
-      top: -10%;
-      left: 0;
+      top: 7.5%;
+      left: 7.5%;
       z-index: -1;
-      width: 100%;
-      height: 120%;
+      width: 85%;
+      height: 85%;
       background-image: radial-gradient(circle, rgba(8, 232, 222, .2), rgba(8, 232, 222, .1));
       border-radius: 50%;
       filter: blur(10px);
@@ -153,9 +154,7 @@ body{
     font-size: 20px;
     color: #fff;
   }
-}
-.progress{
-  &__bar{
+  &__percent{
     position: relative;
     width: 80%;
     height: 1px;
@@ -187,8 +186,6 @@ body{
     font-size: 3vmin;
   }
   .container{
-    margin-bottom: 2%;
-    width: 90%;
     height: 82%;
   }
   .card{
@@ -234,8 +231,8 @@ body{
       height: 5vh;
     }
     &__image{
-      width: 70%;
-      height: 50%;
+      width: 45vh;
+      height: 45vh;
     }
     &__title{
       width: 90%;
@@ -253,7 +250,6 @@ body{
     font-size: 3.8vmin;
   }
   .container{
-    width: 92%;
     height: 70%;
   }
   .card{
@@ -301,8 +297,8 @@ body{
     &__image{
       flex-grow: 2;
       flex-shrink: 0;
-      width: 45%;
-      height: 70%;
+      width: 38vw;
+      height: 38vw;
     }
     &__title{
       flex-grow: 1;

@@ -75,9 +75,11 @@ const Poker = function() {
 
     this.showPercent = (counter, number) => {
         let percent = Math.round(counter/number * 100);
+        const preloadPercent = document.querySelector('.preload__percent');
+        const preloadLine = document.querySelector('.preload__line');
 
-        document.querySelector('.progress__bar').setAttribute('data-percent', percent);
-        document.querySelector('.progress__line').style.width = `${percent}%`;
+        preloadPercent.setAttribute('data-percent', percent);
+        preloadLine.style.width = `${percent}%`;
 
         if(counter == number){
             document.body.removeChild(document.querySelector('.preload'));
