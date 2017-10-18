@@ -7,19 +7,7 @@ const Poker = function() {
     this.popup = document.querySelector('.popup');
     this.popupClose = document.querySelector('.popup__close');
     this.cardList = document.querySelector('.card__list');
-
-    this.images = [
-        'hand-1.png',
-        'hand-2.png',
-        'hand-3.png',
-        'hand-4.png',
-        'hand-5.png',
-        'hand-6.png',
-        'hand-7.png',
-        'hand-8.png',
-        'hand-9.png',
-        'hand-10.png'
-    ];
+    this.loadIndex = 1;
 
     this.combName = [
         'Роял Стрит Флэш',
@@ -75,14 +63,17 @@ const Poker = function() {
 
     this.showPercent = (counter, number) => {
         let percent = Math.round(counter/number * 100);
+        const preload = document.querySelector('.preload');
         const preloadPercent = document.querySelector('.preload__percent');
         const preloadLine = document.querySelector('.preload__line');
 
         preloadPercent.setAttribute('data-percent', percent);
-        preloadLine.style.width = `${percent}%`;
+        preloadLine.style.cssText = `-webkit-transform: translate3d(-${100 - percent}%,0,0);
+                                     transform: translate3d(-${100 - percent}%,0,0)`;
 
         if(counter == number){
-            document.body.removeChild(document.querySelector('.preload'));
+            document.body.removeChild(preload);
+            self.setCardSize();
         }
     };
 
@@ -92,20 +83,37 @@ const Poker = function() {
 
     };
 
+    this.loadImage = () => {
+        return new Promise((resolve, reject) => {
+            let image = new Image();
+            image.src = `img/hand-${self.loadIndex}.png`;
+            image.onload = () => {
+                self.showPercent(self.loadIndex, self.combName.length);
+                resolve(image.src);
+                if(self.loadIndex !== self.combName.length) {
+                    self.loadIndex++;
+                    self.loadImage();
+                }
+
+            };
+            image.onerror = () => reject();
+        });
+    };
+
     this.preloadImages = () => {
         let images = [];
-        let imagesNumber = self.images.length, imagesCounter = 0;
+        let imagesNumber = self.combName.length, imagesCounter = 0;
 
-        for(let n = 0; n < imagesNumber; n++) {
+        for(let n = 1; n < imagesNumber + 1; n++) {
             images[n] = new Image();
-            images[n].src = `img/${self.images[n]}`;
+            images[n].src = `img/hand-${n}.png`;
             images[n].onload = () => {
                 imagesCounter++;
                 self.showPercent(imagesCounter, imagesNumber);
-                if(self.images.length == imagesCounter) {
+                if(imagesCounter == imagesNumber) {
                     self.setCardSize();
                 }
-            }
+            };
         }
     };
 
@@ -127,5 +135,6 @@ const Poker = function() {
 
 window.addEventListener('DOMContentLoaded', () => {
     const poker = new Poker();
-    poker.preloadImages();
+
+    window.Promise ? poker.loadImage() : poker.preloadImages();
 });
