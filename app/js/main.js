@@ -119,8 +119,8 @@ const Poker = function() {
 
     this.popupClose.addEventListener('click', self.hidePopup);
     this.cardList.addEventListener('click', e => {
-        let x = e.pageX / window.innerWidth * 100;
-        let y = e.pageY / window.innerHeight * 100;
+        let x = Math.round(e.pageX / window.innerWidth * 100);
+        let y = Math.round(e.pageY / window.innerHeight * 100);
         let cardItem = e.target;
 
         if(e.target.className == 'card__image' || e.target.className == 'card__title'){
