@@ -117,6 +117,16 @@ const Poker = function() {
         }
     };
 
+    this.checkUpdate = () => {
+        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+
+            window.applicationCache.swapCache();
+            if (confirm('A new version of this site is available. Load it?')) {
+                window.location.reload();
+            }
+        }
+    };
+
     this.popupClose.addEventListener('click', self.hidePopup);
     this.cardList.addEventListener('click', e => {
         let x = Math.round(e.pageX / window.innerWidth * 100);
@@ -131,10 +141,13 @@ const Poker = function() {
         self.showPopup(cardItem.getAttribute('data-index'));
     });
     window.addEventListener('resize', self.setCardSize);
+    window.applicationCache.addEventListener('updateready', self.checkUpdate);
 };
 
 window.addEventListener('DOMContentLoaded', () => {
     const poker = new Poker();
 
     window.Promise ? poker.loadImage() : poker.preloadImages();
+
+
 });
