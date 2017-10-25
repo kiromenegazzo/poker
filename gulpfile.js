@@ -70,7 +70,7 @@ gulp.task('read-dir', function() {
     fs.readdir('docs/', function(err, items) {
         for (var i=0; i<items.length; i++) {
             if(items[i] !== 'img' && items[i] !== 'cache.manifest') {
-                manifestData += `./${items[i]} \n`;
+                manifestData += `${items[i]} \n`;
                 if(i == items.length - 1) {
                     gulp.start('update-manifest');
                 }

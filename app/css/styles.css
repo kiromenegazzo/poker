@@ -35,11 +35,6 @@ body {
   width: 90%;
   color: #cbfff4;
 }
-.title,
-.subtitle,
-.card__item {
-  filter: blur(50px);
-}
 .container {
   width: 95%;
   margin-bottom: 2%;
@@ -66,9 +61,6 @@ body {
   align-items: center;
   text-align: center;
   cursor: pointer;
-}
-.card__item:focus {
-  background-color: red!important;
 }
 .card__image {
   position: absolute;
