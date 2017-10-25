@@ -2,11 +2,10 @@
 
 const Poker = function() {
 
-    const self = this;
-
     this.popup = document.querySelector('.popup');
     this.popupClose = document.querySelector('.popup__close');
     this.cardList = document.querySelector('.card__list');
+    this.isMobile = (navigator.userAgent.match(/iPad|iPhone|Mobile|Android|Windows Phone/g) ? true : false);
     this.loadIndex = 1;
 
     this.combName = [
@@ -35,32 +34,6 @@ const Poker = function() {
         'ни одна из вышеописанных комбинаций'
     ];
 
-    this.setCardSize = () =>  {
-        let cards = self.cardList.children;
-        let containerHeight = document.querySelector('.container').clientHeight;
-        let rows = window.innerWidth < window.innerHeight ? 5 : 2;
-
-        [].forEach.call(cards, card => {
-            card.style.cssText = `height:${containerHeight / rows}px`;
-        });
-    };
-
-    this.showPopup = index => {
-        const popupImage = document.querySelector('.popup__image');
-        const popupTitle = document.querySelector('.popup__title');
-        const popupDesc = document.querySelector('.popup__desc');
-
-        self.popup.classList.add('popup--open');
-
-        popupImage.style.backgroundImage = `url(img/hand-${index}.png)`;
-        popupTitle.innerText = `${self.combName[index - 1]}`;
-        popupDesc.innerText = `${self.combDesc[index - 1]}`;
-    };
-
-    this.hidePopup = () => {
-        self.popup.classList.remove('popup--open');
-    };
-
     this.showPercent = (counter, number) => {
         let percent = Math.round(counter/number * 100);
         const preload = document.querySelector('.preload');
@@ -73,26 +46,87 @@ const Poker = function() {
 
         if(counter == number){
             document.body.removeChild(preload);
-            self.setCardSize();
+            this.setCardSize();
         }
     };
 
-    this.setTransformOrigin = (transformOriginX, transformOriginY) => {
-        self.popup.style.cssText = `-webkit-transform-origin: ${transformOriginX}% ${transformOriginY}% 0;
-                                    transform-origin: ${transformOriginX}% ${transformOriginY}% 0;`;
+    this.setCardSize = () =>  {
+        let cards = this.cardList.children;
+        let containerHeight = document.querySelector('.container').clientHeight;
+        let rows = window.innerWidth < window.innerHeight ? 5 : 2;
 
+        [].forEach.call(cards, card => {
+            card.style.cssText = `height:${containerHeight / rows}px`;
+        });
+    };
+
+    this.setPopupContent = index => {
+        const popupImage = document.querySelector('.popup__image use');
+        const popupTitle = document.querySelector('.popup__title');
+        const popupDesc = document.querySelector('.popup__desc');
+
+        //popupImage.style.backgroundImage = `url(img/hand-${index}.png)`;
+        popupImage.setAttribute('href', `img/sprite.svg#1`);
+        //popupImage.setAttribute('href', `img/sprite.svg#${index}`);
+        popupTitle.innerText = `${this.combName[index - 1]}`;
+        popupDesc.innerText = `${this.combDesc[index - 1]}`;
+    };
+
+    this.openPopup = () => {
+        if(this.focusedEl !== null) this.popupClose.focus();
+        this.popup.classList.add('popup--open');
+    };
+
+    this.closePopup = () => {
+        if(this.focusedEl !== null) this.focusedEl.focus();
+        this.popup.classList.remove('popup--open');
+    };
+
+    this.setTransformOrigin = (x, y) => {
+        this.popup.style.cssText = `-webkit-transform-origin: ${x}% ${y}% 0;
+                                    transform-origin: ${x}% ${y}% 0;`;
+
+    };
+
+    this.buildPopup = () => {
+        let x = Math.round(event.pageX / window.innerWidth * 100) || '50';
+        let y = Math.round(event.pageY / window.innerHeight * 100) || '50';
+        let cardItem = event.target;
+
+        if(event.target.tagName == 'svg' || event.target.className == 'card__title'){
+            cardItem = event.target.parentNode;
+        } else if(event.target.tagName == 'use') {
+            cardItem = event.target.parentNode.parentNode;
+        }
+
+        this.setTransformOrigin(x, y);
+        this.setPopupContent(cardItem.getAttribute('data-card'));
+        this.openPopup();
+        this.focusedEl = !this.isMobile ? cardItem : null;
+    };
+
+    this.actionHandler = () => {
+        const eventType = event.type;
+
+        if (eventType === 'keydown') {
+            if (event.keyCode === 13 || event.keyCode === 32) {
+                this.buildPopup();
+            }
+        } else if (eventType === 'click') {
+            this.buildPopup();
+        }
     };
 
     this.loadImage = () => {
         return new Promise((resolve, reject) => {
             let image = new Image();
-            image.src = `img/hand-${self.loadIndex}.png`;
+            image.src = `img/hand-${this.loadIndex}.png`;
             image.onload = () => {
-                self.showPercent(self.loadIndex, self.combName.length);
+                this.showPercent(this.loadIndex, this.combName.length);
                 resolve(image.src);
-                if(self.loadIndex !== self.combName.length) {
-                    self.loadIndex++;
-                    self.loadImage();
+                if(this.loadIndex !== this.combName.length) {
+                    this.loadIndex++;
+                    this.loadImage();
                 }
 
             };
@@ -102,16 +136,16 @@ const Poker = function() {
 
     this.preloadImages = () => {
         let images = [];
-        let imagesNumber = self.combName.length, imagesCounter = 0;
+        let imagesNumber = this.combName.length, imagesCounter = 0;
 
         for(let n = 1; n < imagesNumber + 1; n++) {
             images[n] = new Image();
             images[n].src = `img/hand-${n}.png`;
             images[n].onload = () => {
                 imagesCounter++;
-                self.showPercent(imagesCounter, imagesNumber);
+                this.showPercent(imagesCounter, imagesNumber);
                 if(imagesCounter == imagesNumber) {
-                    self.setCardSize();
+                    this.setCardSize();
                 }
             };
         }
@@ -127,27 +161,24 @@ const Poker = function() {
         }
     };
 
-    this.popupClose.addEventListener('click', self.hidePopup);
-    this.cardList.addEventListener('click', e => {
-        let x = Math.round(e.pageX / window.innerWidth * 100);
-        let y = Math.round(e.pageY / window.innerHeight * 100);
-        let cardItem = e.target;
+    this.popupClose.addEventListener('click', this.closePopup);
+    this.cardList.addEventListener('click', this.actionHandler);
+    this.cardList.addEventListener('keydown', this.actionHandler);
 
-        if(e.target.className == 'card__image' || e.target.className == 'card__title'){
-            cardItem = e.target.parentNode;
-        }
-
-        self.setTransformOrigin(x, y);
-        self.showPopup(cardItem.getAttribute('data-index'));
+    this.popup.addEventListener('keydown', () => {
+       if(event.keyCode == '9') {
+            event.preventDefault();
+       } else if(event.keyCode == '27') {
+           this.closePopup();
+       }
     });
-    window.addEventListener('resize', self.setCardSize);
-    window.applicationCache.addEventListener('updateready', self.checkUpdate);
+
+    window.addEventListener('resize', this.setCardSize);
+    window.applicationCache.addEventListener('updateready', this.checkUpdate);
 };
 
 window.addEventListener('DOMContentLoaded', () => {
     const poker = new Poker();
 
     window.Promise ? poker.loadImage() : poker.preloadImages();
-
-
 });

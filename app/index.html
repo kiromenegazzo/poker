@@ -6,7 +6,7 @@
     <title>Покерные комбинации</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<body ontouchstart="">
+<body ontouchstart="" style="filter:invert(100%); opacity: .5">
 <div class="preload">
     <div class="preload__inner">
         <p class="preload__text">Загрузка</p>
@@ -16,56 +16,58 @@
     </div>
 </div>
 <div class="bg">
-    <div class="title">Покерные комбинации</div>
-    <div class="subtitle">Нажмите, чтобы узнать подробнее<span class="subtitle__more"> о каждой комбинации</span></div>
+    <h1 class="title">Покерные комбинации</h1>
+    <p class="subtitle">Нажмите, чтобы узнать подробнее о каждой комбинации</p>
     <div class="container">
         <div class="card__list">
-            <div class="card__item" data-index="1">
-                <div class="card__image"></div>
-                <div class="card__title">Роял стрит флэш</div>
+            <div class="card__item" data-card="1" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Роял стрит флэш</span>
             </div>
-            <div class="card__item" data-index="2">
-                <div class="card__image"></div>
-                <div class="card__title">Стрит флеш</div></div>
-            <div class="card__item" data-index="3">
-                <div class="card__image"></div>
-                <div class="card__title">Каре</div></div>
-            <div class="card__item" data-index="4">
-                <div class="card__image"></div>
-                <div class="card__title">Фулл хаус</div>
+            <div class="card__item" data-card="2" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Стрит флеш</span>
             </div>
-            <div class="card__item" data-index="5">
-                <div class="card__image"></div>
-                <div class="card__title">Флеш</div>
+            <div class="card__item" data-card="3" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Каре</span>
             </div>
-            <div class="card__item" data-index="6">
-                <div class="card__image"></div>
-                <div class="card__title">Стрит</div>
+            <div class="card__item" data-card="4" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Фулл хаус</span>
             </div>
-            <div class="card__item" data-index="7">
-                <div class="card__image"></div>
-                <div class="card__title">Тройка</div>
+            <div class="card__item" data-card="5" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Флеш</span>
             </div>
-            <div class="card__item" data-index="8">
-                <div class="card__image"></div>
-                <div class="card__title">Две пары</div>
+            <div class="card__item" data-card="6" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Стрит</span>
             </div>
-            <div class="card__item" data-index="9">
-                <div class="card__image"></div>
-                <div class="card__title">Пара</div>
+            <div class="card__item" data-card="7" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Тройка</span>
             </div>
-            <div class="card__item" data-index="10">
-                <div class="card__image"></div>
-                <div class="card__title">Старшая карта</div>
+            <div class="card__item" data-card="8" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Две пары</span>
+            </div>
+            <div class="card__item" data-card="9" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Пара</span>
+            </div>
+            <div class="card__item" data-card="10" tabindex="0" role="button">
+                <svg class="card__image"><use href="img/sprite.svg#1"></use></svg>
+                <span class="card__title">Старшая карта</span>
             </div>
         </div>
     </div>
 </div>
-<div class="popup">
-    <button class="popup__close"></button>
-    <div class="popup__image"></div>
-    <div class="popup__title"></div>
-    <div class="popup__desc"></div>
+<div class="popup" role="dialog" aria-modal="true" aria-labelledby="dialog__label">
+    <button class="popup__close" type="button" title="close"></button>
+    <svg class="popup__image"><use href="img/sprite.svg#1"></use></svg>
+    <h2 class="popup__title" id="dialog__label"></h2>
+    <p class="popup__desc"></p>
 </div>
 <script src="js/main.js"></script>
 </body>
