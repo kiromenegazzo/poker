@@ -2,10 +2,10 @@ body {
   width: 100%;
   height: 100%;
   font-family: 'Segoe UI', Helvetica, serif;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
+  color: #fff;
   user-select: none;
   touch-action: none;
+  -webkit-text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 * {
@@ -22,32 +22,22 @@ body {
   width: 100%;
   height: 100%;
   text-align: center;
-  background-color: #192f31;
+  background-color: #115c38;
 }
 .title {
   width: 90%;
   margin-top: 2.5%;
-  font-weight: bold;
+  font-weight: 100;
+  text-transform: uppercase;
   line-height: 1.2;
-  color: #fff;
 }
 .subtitle {
   width: 90%;
-  color: #cbfff4;
 }
 .container {
   width: 95%;
   margin-bottom: 2%;
   border: 2px solid #fef6c6;
-}
-.card {
-  /*.loop(@n) when (@n < 11) {
-    .loop((@n + 1));
-    &__item:nth-of-type(@{n}) &__image{
-      background-image: url('../img/hand-@{n}.png');
-    }
-  }
-  .loop(@n);*/
 }
 .card__list {
   display: flex;
@@ -61,6 +51,10 @@ body {
   align-items: center;
   text-align: center;
   cursor: pointer;
+  outline-color: #fef6c6;
+}
+.card__item:focus {
+  border: none;
 }
 .card__image {
   position: absolute;
@@ -70,25 +64,23 @@ body {
   position: relative;
   width: 100%;
   margin-top: auto;
-  padding-top: 1vmin;
-  padding-bottom: 1vmin;
+  padding-top: 1.5vmin;
+  padding-bottom: 1.5vmin;
   font-size: 2.5vmin;
+  font-weight: 100;
   text-transform: uppercase;
   line-height: 1;
-  background-color: #2e514d;
-  color: #fff;
+  background-color: #1c5138;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 1px;
 }
 .popup {
   position: fixed;
   display: flex;
   text-align: center;
-  background-color: #192f31;
-  color: #fef6c6;
+  background-color: #0d462b;
   border: 2px solid #fef6c6;
   transform: scale(0);
+  color: #fef6c6;
 }
 .popup--open {
   transition: transform 0.33s ease-in-out;
@@ -101,6 +93,10 @@ body {
   border: 2px solid #fef6c6;
   border-radius: 50%;
   cursor: pointer;
+  outline-color: #fef6c6;
+}
+.popup__close:active {
+  transform: scale(0.9);
 }
 .popup__close:before,
 .popup__close:after {
@@ -124,10 +120,11 @@ body {
 }
 .popup__title {
   font-size: 12vmin;
-  font-weight: 400;
+  font-weight: 100;
 }
 .popup__desc {
   font-size: 7vmin;
+  font-weight: 100;
   font-style: italic;
 }
 .preload {
@@ -140,8 +137,9 @@ body {
   align-items: center;
   width: 100%;
   height: 100%;
+  font-weight: 100;
   text-align: center;
-  background-color: #003237;
+  background-color: #0c6138;
 }
 .preload__inner {
   width: 80%;
@@ -149,9 +147,8 @@ body {
   overflow: hidden;
 }
 .preload__text {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   font-size: 20px;
-  color: #fff;
 }
 .preload__percent {
   position: relative;
@@ -160,13 +157,12 @@ body {
   margin-right: auto;
   margin-left: auto;
   font-size: 12px;
-  background-color: #3b3b3b;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .preload__percent:after {
   content: attr(data-percent) '%';
   position: relative;
-  top: 7px;
-  color: #a1a1a1;
+  top: 15px;
 }
 .preload__line {
   position: absolute;
@@ -193,18 +189,18 @@ body {
   }
   .card__item:nth-of-type(4n+3),
   .card__item:nth-of-type(4n+4) {
-    background-color: #071e1e;
+    background-color: #0e5f38;
   }
   .card__item:nth-of-type(-n+2),
   .card__item:nth-of-type(n+5):nth-of-type(-n+6),
   .card__item:nth-of-type(n+9) {
-    background-color: #123536;
+    background-color: #165738;
   }
   .card__item:nth-of-type(2n+1) {
-    border-right: 1px solid #46635a;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
   }
   .card__item:nth-of-type(-n+8) {
-    border-bottom: 1px solid #46635a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   .card__image {
     top: 5%;
@@ -248,11 +244,11 @@ body {
   }
   .card__item:nth-of-type(5n-1),
   .card__item:nth-of-type(5n-3) {
-    background-color: #071e1e;
+    background-color: #0e5f38;
   }
   .card__item:nth-of-type(2n+1):nth-of-type(-n+5),
   .card__item:nth-of-type(2n):nth-of-type(n+6) {
-    background-color: #123536;
+    background-color: #165738;
   }
   .card__item:nth-of-type(-n+4),
   .card__item:nth-of-type(n+6):nth-of-type(-n+9) {
@@ -263,9 +259,6 @@ body {
   }
   .card__image {
     height: 70%;
-    /*margin-top: 2%;
-      margin-bottom: 2%;
-      .rps();*/
   }
   .popup {
     top: 2.5%;

@@ -61,21 +61,27 @@ gulp.task('watch', ['browser-sync', 'css-libs', 'scripts'], function() {
 });
 
 gulp.task('read-dir', function() {
-    fs.readdir('docs/img', function(err, items) {
-        for (var i=0; i<items.length; i++) {
-            manifestData += `img/${items[i]} \n`;
-
-        }
-    });
-    fs.readdir('docs/', function(err, items) {
-        for (var i=0; i<items.length; i++) {
-            if(items[i] !== 'img' && items[i] !== 'cache.manifest') {
-                manifestData += `${items[i]} \n`;
+    return new Promise((resolve, reject) => {
+        fs.readdir('docs/img', function(err, items) {
+            for (let i=0; i<items.length; i++) {
+                manifestData += `img/${items[i]} \n`;
+                console.log(manifestData);
                 if(i == items.length - 1) {
-                    gulp.start('update-manifest');
+                    resolve();
                 }
             }
-        }
+        });
+    }).then(() => {
+        fs.readdir('docs/', function(err, items) {
+            for (var i=0; i<items.length; i++) {
+                if(items[i] !== 'img' && items[i] !== 'cache.manifest') {
+                    manifestData += `${items[i]} \n`;
+                    if(i == items.length - 1) {
+                        gulp.start('update-manifest');
+                    }
+                }
+            }
+        });
     });
 });
 

@@ -1,17 +1,13 @@
-@n: 1;
-.rps(@pos:center; @size:contain){
-  background-repeat: no-repeat;
-  background-position: @pos;
-  background-size: @size;
-}
+@main-color: #115c38;
+@second-color: #fef6c6;
 body{
   width: 100%;
   height: 100%;
   font-family: 'Segoe UI', Helvetica, serif;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
+  color: #fff;
   user-select: none;
   touch-action: none;
+  -webkit-text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 *{
@@ -28,23 +24,22 @@ body{
   width: 100%;
   height: 100%;
   text-align: center;
-  background-color: #192f31;
+  background-color: @main-color;
 }
 .title{
   width: 90%;
   margin-top: 2.5%;
-  font-weight: bold;
+  font-weight: 100;
+  text-transform: uppercase;
   line-height: 1.2;
-  color: #fff;
 }
 .subtitle{
   width: 90%;
-  color: #cbfff4;
 }
 .container{
   width: 95%;
   margin-bottom: 2%;
-  border: 2px solid #fef6c6;
+  border: 2px solid @second-color;
 }
 .card{
   &__list{
@@ -59,14 +54,11 @@ body{
     align-items: center;
     text-align: center;
     cursor: pointer;
-  }
-  /*.loop(@n) when (@n < 11) {
-    .loop((@n + 1));
-    &__item:nth-of-type(@{n}) &__image{
-      background-image: url('../img/hand-@{n}.png');
+    outline-color: @second-color;
+    &:focus{
+      border: none;
     }
   }
-  .loop(@n);*/
   &__image{
     position: absolute;
     width: 100%;
@@ -75,26 +67,24 @@ body{
     position: relative;
     width: 100%;
     margin-top: auto;
-    padding-top: 1vmin;
-    padding-bottom: 1vmin;
+    padding-top: 1.5vmin;
+    padding-bottom: 1.5vmin;
     font-size: 2.5vmin;
+    font-weight: 100;
     text-transform: uppercase;
     line-height: 1;
-    background-color: #2e514d;
-    color: #fff;
+    background-color: desaturate(@main-color, 20%);
     border-top: 1px solid rgba(255, 255, 255, .2);
-    border-bottom: 1px solid rgba(0,0,0,.2);
-    border-radius: 1px;
   }
 }
 .popup{
   position: fixed;
   display: flex;
   text-align: center;
-  background-color: #192f31;
-  color: #fef6c6;
-  border: 2px solid #fef6c6;
+  background-color: darken(@main-color, 5%);
+  border: 2px solid @second-color;
   transform: scale(0);
+  color: @second-color;
   &--open{
     transition: transform .33s ease-in-out;
     transform: scale(1);
@@ -103,9 +93,13 @@ body{
     position: absolute;
     z-index: 1;
     background-color: transparent;
-    border: 2px solid #fef6c6;
+    border: 2px solid @second-color;
     border-radius: 50%;
     cursor: pointer;
+    outline-color: @second-color;
+    &:active{
+      transform: scale(.9);
+    }
     &:before,
     &:after{
       content: '';
@@ -114,7 +108,7 @@ body{
       left: 15%;
       width: 70%;
       height: 2px;
-      background-color: #fef6c6;
+      background-color: @second-color;
       transform-origin: 50% 50%;
     }
     &:before{
@@ -129,10 +123,11 @@ body{
   }
   &__title{
     font-size: 12vmin;
-    font-weight: 400;
+    font-weight: 100;
   }
   &__desc{
     font-size: 7vmin;
+    font-weight: 100;
     font-style: italic;
   }
 }
@@ -146,17 +141,17 @@ body{
   align-items: center;
   width: 100%;
   height: 100%;
+  font-weight: 100;
   text-align: center;
-  background-color: #003237;
+  background-color: saturate(@main-color, 10%);
   &__inner{
     width: 80%;
     padding-bottom: 30px;
     overflow: hidden;
   }
   &__text{
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     font-size: 20px;
-    color: #fff;
   }
   &__percent{
     position: relative;
@@ -165,12 +160,11 @@ body{
     margin-right: auto;
     margin-left: auto;
     font-size: 12px;
-    background-color: #3b3b3b;
+    background-color: rgba(255,255,255,.1);
     &:after{
       content: attr(data-percent) '%';
       position: relative;
-      top: 7px;
-      color: #a1a1a1;
+      top: 15px;
     }
   }
   &__line{
@@ -199,24 +193,23 @@ body{
       width: 50%;
       &:nth-of-type(4n+3),
       &:nth-of-type(4n+4){
-        background-color: #071e1e;
+        background-color: saturate(@main-color, 5%);
       }
       &:nth-of-type(-n+2),
       &:nth-of-type(n+5):nth-of-type(-n+6),
       &:nth-of-type(n+9) {
-        background-color: #123536;
+        background-color: desaturate(@main-color, 10%);
       }
       &:nth-of-type(2n+1){
-        border-right: 1px solid #46635a;
+        border-right: 1px solid rgba(255,255,255,.2);
       }
       &:nth-of-type(-n+8){
-        border-bottom: 1px solid #46635a;
+        border-bottom: 1px solid rgba(255,255,255,.2);
       }
     }
     &__image{
       top: 5%;
       height: 90%;
-      //.rps(center -20%, 50%);
     }
   }
   .popup{
@@ -257,11 +250,11 @@ body{
       width: 20%;
       &:nth-of-type(5n-1),
       &:nth-of-type(5n-3){
-        background-color: #071e1e;
+        background-color: saturate(@main-color, 5%);
       }
       &:nth-of-type(2n+1):nth-of-type(-n+5),
       &:nth-of-type(2n):nth-of-type(n+6){
-        background-color: #123536;
+        background-color: desaturate(@main-color, 10%);
       }
       &:nth-of-type(-n+4),
       &:nth-of-type(n+6):nth-of-type(-n+9){
@@ -273,9 +266,6 @@ body{
     }
     &__image{
       height: 70%;
-      /*margin-top: 2%;
-      margin-bottom: 2%;
-      .rps();*/
     }
   }
   .popup{

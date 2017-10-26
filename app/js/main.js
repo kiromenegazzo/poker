@@ -101,8 +101,8 @@ const Poker = function() {
 
         this.setTransformOrigin(x, y);
         this.setPopupContent(cardItem.getAttribute('data-card'));
-        this.openPopup();
         this.focusedEl = !this.isMobile ? cardItem : null;
+        this.openPopup();
     };
 
     this.actionHandler = () => {
