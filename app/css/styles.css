@@ -50,10 +50,11 @@ body {
   align-items: center;
   text-align: center;
   cursor: pointer;
-  outline-color: #449953;
+  outline: none;
 }
-.card__item:focus {
-  border: none;
+.card__item:focus .card__title,
+.card__item:active .card__title {
+  background-image: linear-gradient(to top, #347140, #249351);
 }
 .card__image {
   position: absolute;

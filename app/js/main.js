@@ -21,8 +21,8 @@ const Poker = function() {
     this.setCardSize = () =>  {
         const cards = document.getElementsByClassName('card__item');
         const container = document.querySelector('.container');
-        let containerHeight = container.clientHeight;
-        let rows = window.innerWidth < window.innerHeight ? 5 : 2;
+        const containerHeight = container.clientHeight;
+        const rows = window.innerWidth < window.innerHeight ? 5 : 2;
 
         [].forEach.call(cards, card => {
             card.style.height = `${containerHeight / rows}px`;
@@ -53,7 +53,6 @@ const Poker = function() {
     this.setTransformOrigin = (x, y) => {
         this.popup.style.cssText = `-webkit-transform-origin: ${x}% ${y}% 0;
                                     transform-origin: ${x}% ${y}% 0;`;
-
     };
 
     this.buildPopup = () => {
@@ -94,7 +93,6 @@ const Poker = function() {
         });
 
         this.body.removeChild(preload);
-        this.setCardSize();
     };
 
     this.preloadSprite = () => {
@@ -129,13 +127,12 @@ const Poker = function() {
     this.popupClose.addEventListener('click', this.closePopup);
     this.cardList.addEventListener('click', this.actionHandler);
     this.cardList.addEventListener('keydown', this.actionHandler);
-
     this.popup.addEventListener('keydown', () => {
-       if(event.keyCode == '9') {
+        if(event.keyCode == '9') {
             event.preventDefault();
-       } else if(event.keyCode == '27') {
+        } else if(event.keyCode == '27') {
            this.closePopup();
-       }
+        }
     });
 
     this.setCardSize();
@@ -146,4 +143,5 @@ const Poker = function() {
 window.addEventListener('DOMContentLoaded', () => {
     const poker = new Poker();
     poker.preloadSprite();
+    console.log(poker);
 });

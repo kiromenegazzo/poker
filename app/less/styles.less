@@ -53,9 +53,12 @@ body{
     align-items: center;
     text-align: center;
     cursor: pointer;
-    outline-color: @main-color;
-    &:focus{
-      border: none;
+    outline: none;
+    &:focus,
+    &:active{
+      .card__title{
+        background-image: linear-gradient(to top,  desaturate(#30753d, 5%), saturate(#298E52, 5%));
+      }
     }
   }
   &__image{
