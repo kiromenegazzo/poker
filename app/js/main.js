@@ -143,5 +143,4 @@ const Poker = function() {
 window.addEventListener('DOMContentLoaded', () => {
     const poker = new Poker();
     poker.preloadSprite();
-    console.log(poker);
 });
