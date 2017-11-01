@@ -10,12 +10,15 @@ const Poker = function() {
 
     this.showPercent = (current, total) => {
         let percent = Math.round(current/total * 100);
+        const preload = document.querySelector('.preload');
         const preloadPercent = document.querySelector('.preload__percent');
         const preloadLine = document.querySelector('.preload__line');
 
         preloadPercent.setAttribute('data-percent', percent);
         preloadLine.style.cssText = `-webkit-transform: translate3d(-${100 - percent}%,0,0);
                                      transform: translate3d(-${100 - percent}%,0,0)`;
+
+        if(current == total) this.body.removeChild(preload);
     };
 
     this.setCardSize = () =>  {
@@ -86,13 +89,10 @@ const Poker = function() {
 
     this.setHref = () => {
         const images = document.querySelectorAll('.card__image use');
-        const preload = document.querySelector('.preload');
 
         [].forEach.call(images, (image, i) => {
             image.setAttribute('xlink:href', `#${i + 1}`);
         });
-
-        this.body.removeChild(preload);
     };
 
     this.preloadSprite = () => {
@@ -100,15 +100,15 @@ const Poker = function() {
         xhr.open('GET', 'img/sprite.svg', true);
         xhr.send();
 
-        xhr.onprogress = () => {
-            if(event.lengthComputable) {
-                this.showPercent(event.loaded, event.total);
+        xhr.onprogress = e => {
+            if(e.lengthComputable) {
+                this.showPercent(e.loaded, e.total);
             }
         };
 
-        xhr.onreadystatechange = () => {
+        xhr.onreadystatechange = e => {
             if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                this.body.innerHTML += event.target.response;
+                this.popup.insertAdjacentHTML('afterEnd', e.target.response);
                 this.setHref();
             }
         };
@@ -131,13 +131,13 @@ const Poker = function() {
         if(event.keyCode == '9') {
             event.preventDefault();
         } else if(event.keyCode == '27') {
-           this.closePopup();
+            this.closePopup();
         }
     });
 
     this.setCardSize();
     window.addEventListener('resize', this.setCardSize);
-    window.applicationCache.addEventListener('updateready', this.checkUpdate);
+    if(window.applicationCache) window.applicationCache.addEventListener('updateready', this.checkUpdate);
 };
 
 window.addEventListener('DOMContentLoaded', () => {
