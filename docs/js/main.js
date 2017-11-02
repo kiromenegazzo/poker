@@ -117,6 +117,12 @@ const Poker = function() {
             }
         };
 
+        /*xhr.onload = e => {
+            console.log(e);
+            this.popup.insertAdjacentHTML('afterEnd', e.target.response);
+            this.setHref();
+        };*/
+
         /*const preload = document.querySelector('.preload');
         const sprite = new Image();
         sprite.src = 'img/sprite.svg';
