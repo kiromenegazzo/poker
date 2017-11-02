@@ -110,18 +110,18 @@ const Poker = function() {
             }
         };
 
-        xhr.onreadystatechange = e => {
+        /*xhr.onreadystatechange = e => {
             if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 this.popup.insertAdjacentHTML('afterEnd', e.target.response);
                 this.setHref();
             }
-        };
+        };*/
 
-        /*xhr.onload = e => {
+        xhr.onload = e => {
             console.log(e);
             this.popup.insertAdjacentHTML('afterEnd', e.target.response);
             this.setHref();
-        };*/
+        };
 
         /*const preload = document.querySelector('.preload');
         const sprite = new Image();
