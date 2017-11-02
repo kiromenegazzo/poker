@@ -2,29 +2,13 @@
 
 const Poker = function() {
 
-    this.body = document.body;
-    this.popup = document.querySelector('.popup');
-    this.popupClose = document.querySelector('.popup__close');
-    this.cardList = document.querySelector('.card__list');
-    this.isMobile = (navigator.userAgent.match(/iPad|iPhone|Mobile|Android|Windows Phone/g) ? true : false);
+    const popup = document.querySelector('.popup');
+    const popupClose = document.querySelector('.popup__close');
+    const cardList = document.querySelector('.card__list');
+    const isMobile = (navigator.userAgent.match(/iPad|iPhone|Mobile|Android|Windows Phone/g) ? true : false);
+    let focusedEl = null;
 
-    this.showPercent = (current, total) => {
-        let percent = Math.round(current/total * 100);
-        const preload = document.querySelector('.preload');
-        const preloadPercent = document.querySelector('.preload__percent');
-        const preloadLine = document.querySelector('.preload__line');
-
-        preloadPercent.setAttribute('data-percent', percent);
-        preloadLine.style.cssText = `-webkit-transform: translate3d(-${100 - percent}%,0,0);
-                                     transform: translate3d(-${100 - percent}%,0,0)`;
-
-        if(current == total) {
-            this.body.removeChild(preload);
-            console.log(this.body, this.body.children);
-        }
-    };
-
-    this.setCardSize = () =>  {
+    const setCardSize = () =>  {
         const cards = document.getElementsByClassName('card__item');
         const container = document.querySelector('.container');
         const containerHeight = container.clientHeight;
@@ -35,7 +19,7 @@ const Poker = function() {
         });
     };
 
-    this.setPopupContent = index => {
+    const setPopupContent = index => {
         const popupImage = document.querySelector('.popup__image use');
         const popupTitle = document.querySelector('.popup__title');
         const cardTitle = document.getElementsByClassName('card__title')[index - 1];
@@ -46,22 +30,22 @@ const Poker = function() {
         popupDesc.innerText = `${cardTitle.getAttribute('data-desc')}`;
     };
 
-    this.openPopup = () => {
-        if(this.focusedEl !== null) this.popupClose.focus();
-        this.popup.classList.add('popup--open');
+    const openPopup = () => {
+        if(focusedEl !== null) popupClose.focus();
+        popup.classList.add('popup--open');
     };
 
-    this.closePopup = () => {
-        if(this.focusedEl !== null) this.focusedEl.focus();
-        this.popup.classList.remove('popup--open');
+    const closePopup = () => {
+        if(focusedEl !== null) focusedEl.focus();
+        popup.classList.remove('popup--open');
     };
 
-    this.setTransformOrigin = (x, y) => {
-        this.popup.style.cssText = `-webkit-transform-origin: ${x}% ${y}% 0;
+    const setTransformOrigin = (x, y) => {
+        popup.style.cssText = `-webkit-transform-origin: ${x}% ${y}% 0;
                                     transform-origin: ${x}% ${y}% 0;`;
     };
 
-    this.buildPopup = () => {
+    const buildPopup = () => {
         let x = Math.round(event.pageX / window.innerWidth * 100) || '50';
         let y = Math.round(event.pageY / window.innerHeight * 100) || '50';
         let cardItem = event.target;
@@ -72,25 +56,25 @@ const Poker = function() {
             cardItem = event.target.parentNode.parentNode;
         }
 
-        this.setTransformOrigin(x, y);
-        this.setPopupContent(cardItem.getAttribute('data-card'));
-        this.focusedEl = !this.isMobile ? cardItem : null;
-        this.openPopup();
+        setTransformOrigin(x, y);
+        setPopupContent(cardItem.getAttribute('data-card'));
+        focusedEl = !isMobile ? cardItem : null;
+        openPopup();
     };
 
-    this.actionHandler = () => {
+    const actionHandler = () => {
         const eventType = event.type;
 
         if (eventType === 'keydown') {
             if (event.keyCode === 13 || event.keyCode === 32) {
-                this.buildPopup();
+                buildPopup();
             }
         } else if (eventType === 'click') {
-            this.buildPopup();
+            buildPopup();
         }
     };
 
-    this.setHref = () => {
+    const setHref = () => {
         const images = document.querySelectorAll('.card__image use');
 
         [].forEach.call(images, (image, i) => {
@@ -99,59 +83,46 @@ const Poker = function() {
     };
 
     this.preloadSprite = () => {
+        const body = document.body;
+        const preload = document.querySelector('.preload');
         const xhr = new XMLHttpRequest();
         xhr.open('GET', 'img/sprite.svg', true);
         xhr.send();
 
-        xhr.onprogress = e => {
-            if(e.lengthComputable) {
-                console.log(e.loaded, e.total);
-                this.showPercent(e.loaded, e.total);
-            }
+        xhr.onload = e => {
+            body.removeChild(preload);
+            popup.insertAdjacentHTML('afterEnd', e.target.response);
+            setHref();
         };
-
-        xhr.onreadystatechange = e => {
-            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                this.popup.insertAdjacentHTML('afterEnd', e.target.response);
-                this.setHref();
-            }
-        };
-
-        /*const preload = document.querySelector('.preload');
-        const sprite = new Image();
-        sprite.src = 'img/sprite.svg';
-        sprite.onload = () => {
-            //this.popup.insertAdjacentHTML('afterEnd', sprite);
-            this.body.appendChild(sprite);
-            this.body.removeChild(preload);
-            this.setHref();
-        };*/
     };
 
-    this.checkUpdate = () => {
-        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+    const checkUpdate = () => {
+        if(window.applicationCache) {
 
-            window.applicationCache.swapCache();
-            if (confirm('A new version of this site is available. Load it?')) {
-                window.location.reload();
+            if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+
+                window.applicationCache.swapCache();
+                if (confirm('A new version of this site is available. Load it?')) {
+                    window.location.reload();
+                }
             }
         }
     };
 
-    this.popupClose.addEventListener('click', this.closePopup);
-    this.cardList.addEventListener('click', this.actionHandler);
-    this.cardList.addEventListener('keydown', this.actionHandler);
-    this.popup.addEventListener('keydown', () => {
-        if(event.keyCode == '9') {
-            event.preventDefault();
-        } else if(event.keyCode == '27') {
-            this.closePopup();
+    popupClose.addEventListener('click', closePopup);
+    cardList.addEventListener('click', actionHandler);
+    cardList.addEventListener('keydown', actionHandler);
+    popup.addEventListener('keydown', (e) => {
+        if(e.keyCode == '9') {
+            e.preventDefault();
+        } else if(e.keyCode == '27') {
+            closePopup();
         }
     });
 
-    this.setCardSize();
-    window.addEventListener('resize', this.setCardSize);
-    if(window.applicationCache) window.applicationCache.addEventListener('updateready', this.checkUpdate);
+    setCardSize();
+    window.addEventListener('resize', setCardSize);
+    window.applicationCache.addEventListener('updateready', checkUpdate);
 };
 
 window.addEventListener('DOMContentLoaded', () => {
