@@ -65,7 +65,6 @@ gulp.task('read-dir', function() {
         fs.readdir('docs/img', function(err, items) {
             for (let i=0; i<items.length; i++) {
                 manifestData += `img/${items[i]} \n`;
-                console.log(manifestData);
                 if(i == items.length - 1) {
                     resolve();
                 }
