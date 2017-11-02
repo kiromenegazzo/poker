@@ -103,12 +103,12 @@ const Poker = function() {
         xhr.open('GET', 'img/sprite.svg', true);
         xhr.send();
 
-        xhr.onprogress = e => {
+        /*xhr.onprogress = e => {
             if(e.lengthComputable) {
                 console.log(e.loaded, e.total);
                 this.showPercent(e.loaded, e.total);
             }
-        };
+        };*/
 
         /*xhr.onreadystatechange = e => {
             if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
