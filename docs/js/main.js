@@ -117,8 +117,11 @@ const Poker = function() {
             }
         };*/
 
+        const preload = document.querySelector('.preload');
+
         xhr.onload = e => {
             console.log(e);
+            this.body.removeChild(preload);
             this.popup.insertAdjacentHTML('afterEnd', e.target.response);
             this.setHref();
         };
