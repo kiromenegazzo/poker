@@ -95,19 +95,26 @@ body{
     right: 0;
     z-index: 1;
     background-color: transparent;
-    background-image: radial-gradient(circle closest-side, transparent 70%, @main-color 75%, transparent 80%);
     border: none;
-    border-radius: 50%;
-    outline-color: @main-color;
     cursor: pointer;
+    outline-color: @main-color;
     &:active{
       transform: scale(.9);
+    }
+    &-inner{
+      position: absolute;
+      top: 15%;
+      left: 15%;
+      width: 70%;
+      height: 70%;
+      border: 2px solid @main-color;
+      border-radius: 50%;
     }
     &:before,
     &:after{
       content: '';
       position: absolute;
-      top: 47%;
+      top: ~'calc((100% - 2px)/2)';
       left: 30%;
       width: 40%;
       height: 2px;
@@ -276,7 +283,7 @@ body{
     }
   }
 }
-@keyframes loading {
+@-webkit-keyframes loading {
   0% {
     opacity: 1;
   }
