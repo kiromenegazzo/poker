@@ -91,12 +91,15 @@ body{
   }
   &__close{
     position: absolute;
+    top: 0;
+    right: 0;
     z-index: 1;
     background-color: transparent;
-    border: 2px solid @main-color;
+    background-image: radial-gradient(circle closest-side, transparent 70%, @main-color 75%, transparent 80%);
+    border: none;
     border-radius: 50%;
-    cursor: pointer;
     outline-color: @main-color;
+    cursor: pointer;
     &:active{
       transform: scale(.9);
     }
@@ -104,12 +107,11 @@ body{
     &:after{
       content: '';
       position: absolute;
-      top: ~'calc((100% - 2px)/2)';
-      left: 15%;
-      width: 70%;
+      top: 47%;
+      left: 30%;
+      width: 40%;
       height: 2px;
       background-color: @main-color;
-      transform-origin: 50% 50%;
     }
     &:before{
       transform: rotate3d(0,0,1,45deg);
@@ -200,10 +202,8 @@ body{
     width: 95%;
     height: 97%;
     &__close {
-      top: 1vh;
-      right: 1vh;
-      width: 5vh;
-      height: 5vh;
+      width: 10vh;
+      height: 10vh;
     }
     &__image {
       width: 100%;
@@ -247,10 +247,8 @@ body{
     width: 97%;
     height: 95%;
     &__close{
-      top: 2vh;
-      right: 2vh;
-      width: 9vh;
-      height: 9vh;
+      width: 15vh;
+      height: 15vh;
     }
     &__image{
       flex-grow: 1;
