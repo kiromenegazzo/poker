@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    ivengo: './app/index.js'
+    main: './app/index.js'
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
