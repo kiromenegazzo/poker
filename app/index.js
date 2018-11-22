@@ -1,4 +1,3 @@
-
 import './styles.less';
 import './sprite.svg';
 
@@ -24,10 +23,11 @@ const Poker = function () {
   this.popupClose.addEventListener('click', this.closePopup);
   this.cardList.addEventListener('click', this.actionHandler);
   this.cardList.addEventListener('keydown', this.actionHandler);
-  this.popup.addEventListener('keydown', (e) => {
-    if (e.keyCode === '9') {
-      e.preventDefault();
-    } else if (e.keyCode === '27') {
+  this.popup.addEventListener('keydown', (event) => {
+    const { keyCode, preventDefault } = event;
+    if (keyCode === '9') {
+      preventDefault();
+    } else if (keyCode === '27') {
       this.closePopup();
     }
   });
@@ -41,7 +41,7 @@ Poker.prototype.setCardSize = function () {
   const containerHeight = this.container.clientHeight;
   const rows = window.innerWidth < window.innerHeight ? 5 : 2;
 
-  [].forEach.call(this.cards, (card) => {
+  Array.prototype.forEach.call(this.cards, (card) => {
     card.style.height = `${containerHeight / rows}px`;
   });
 };
@@ -56,22 +56,22 @@ Poker.prototype.setPopupContent = function (index) {
 
 Poker.prototype.openPopup = function () {
   if (this.focusedEl !== null) this.popupClose.focus();
-  this.popup.classList.add('popup--open');
+  console.log(this.popup);
+  this.popup.classList.add('--open');
 };
 
 Poker.prototype.closePopup = function () {
   if (this.focusedEl !== null) this.focusedEl.focus();
-  this.popup.classList.remove('popup--open');
+  this.popup.classList.remove('--open');
 };
 
 Poker.prototype.setTransformOrigin = function (x, y) {
-  this.popup.style.cssText = `-webkit-transform-origin: ${x}% ${y}% 0;
-                            transform-origin: ${x}% ${y}% 0;`;
+  this.popup.style.cssText = `-webkit-transform-origin: ${x}% ${y}% 0; transform-origin: ${x}% ${y}% 0;`;
 };
 
 Poker.prototype.buildPopup = function () {
-  const x = Math.round(event.pageX / window.innerWidth * 100) || '50';
-  const y = Math.round(event.pageY / window.innerHeight * 100) || '50';
+  const x = Math.round((event.pageX / window.innerWidth) * 100) || '50';
+  const y = Math.round((event.pageY / window.innerHeight) * 100) || '50';
   const cardItem = event.target;
 
   this.setTransformOrigin(x, y);
@@ -81,13 +81,13 @@ Poker.prototype.buildPopup = function () {
 };
 
 Poker.prototype.actionHandler = function () {
-  const eventType = event.type;
+  const { type, keyCode } = event;
 
-  if (eventType === 'keydown') {
-    if (event.keyCode === 13 || event.keyCode === 32) {
+  if (type === 'keydown') {
+    if (keyCode === 13 || keyCode === 32) {
       this.buildPopup();
     }
-  } else if (eventType === 'click') {
+  } else if (type === 'click') {
     this.buildPopup();
   }
 };
@@ -101,14 +101,16 @@ Poker.prototype.setHref = function () {
 };
 
 Poker.prototype.preloadSprite = function () {
-  const body = document.body;
+  const { body } = document;
   const preload = document.querySelector('.preload');
 
-  fetch('sprite.svg').then(res => res.text()).then((res) => {
-    body.removeChild(preload);
-    this.popup.insertAdjacentHTML('afterEnd', res);
-    this.setHref();
-  });
+  fetch('sprite.svg')
+    .then(res => res.text())
+    .then((res) => {
+      body.removeChild(preload);
+      this.popup.insertAdjacentHTML('afterEnd', res);
+      this.setHref();
+    });
 };
 
 Poker.prototype.checkUpdate = function () {
@@ -121,7 +123,6 @@ Poker.prototype.checkUpdate = function () {
     }
   }
 };
-
 
 window.addEventListener('DOMContentLoaded', () => {
   const poker = new Poker();
