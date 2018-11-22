@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"
+    />
     <title>Покерные комбинации</title>
-</head>
-<body ontouchstart="">
-<div class="preload">
-    <p class="preload__text">Загрузка<span class="preload__dot"></span><span class="preload__dot"></span><span class="preload__dot"></span></p>
-</div>
-<div class="bg">
-    <h1 class="title">Покерные комбинации</h1>
-    <p class="subtitle">Нажмите, чтобы узнать подробнее о каждой комбинации</p>
-    <div class="container">
-        <div class="card__list">
-            <div class="card__item" data-card="1" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="5 старших карт одной масти">Роял-флэш</span>
-            </div>
-            <div class="card__item" data-card="2" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="любые пять карт одной масти по порядку">Стрит-флеш</span>
-            </div>
-            <div class="card__item" data-card="3" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="четыре карты одного достоинства">Каре</span>
-            </div>
-            <div class="card__item" data-card="4" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="одна тройка и одна пара">Фулл-хаус</span>
-            </div>
-            <div class="card__item" data-card="5" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="пять карт одной масти">Флеш</span>
-            </div>
-            <div class="card__item" data-card="6" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="пять карт по порядку любых мастей">Стрит</span>
-            </div>
-            <div class="card__item" data-card="7" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="три карты одного достоинства">Тройка</span>
-            </div>
-            <div class="card__item" data-card="8" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="две пары карт одного достоинства">Две пары</span>
-            </div>
-            <div class="card__item" data-card="9" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="две карты одного достоинства">Пара</span>
-            </div>
-            <div class="card__item" data-card="10" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="ни одна из вышеописанных комбинаци">Старшая карта</span>
-            </div>
-        </div>
+  </head>
+  <body ontouchstart="">
+    <div class="preload">
+      <p class="preload__text">
+        Загрузка <span class="preload__dot"></span> <span class="preload__dot"></span>
+        <span class="preload__dot"></span>
+      </p>
+        <select class="language" name="language" id="language">
+            <option value="ru">ru</option>
+            <option value="en">en</option>
+        </select>
     </div>
-</div>
-<div class="popup" role="dialog" aria-modal="true" aria-labelledby="dialog__label">
-    <button class="popup__close" type="button" aria-label="Закрыть"><span class="popup__close-inner"></span></button>
-    <svg class="popup__image"><use xlink:href=""></use></svg>
-    <h2 class="popup__title" id="dialog__label"></h2>
-    <p class="popup__desc"></p>
-</div>
-</body>
+    <div class="bg">
+      <h1 class="title">Покерные комбинации</h1>
+      <p class="subtitle">Нажмите, чтобы узнать подробнее о каждой комбинации</p>
+      <div class="container">
+        <div class="card__list">
+          <div class="card__item" data-card="1" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="5 старших карт одной масти">Роял-флэш</span>
+          </div>
+          <div class="card__item" data-card="2" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="любые пять карт одной масти по порядку"
+              >Стрит-флеш</span
+            >
+          </div>
+          <div class="card__item" data-card="3" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="четыре карты одного достоинства">Каре</span>
+          </div>
+          <div class="card__item" data-card="4" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="одна тройка и одна пара">Фулл-хаус</span>
+          </div>
+          <div class="card__item" data-card="5" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="пять карт одной масти">Флеш</span>
+          </div>
+          <div class="card__item" data-card="6" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="пять карт по порядку любых мастей">Стрит</span>
+          </div>
+          <div class="card__item" data-card="7" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="три карты одного достоинства">Тройка</span>
+          </div>
+          <div class="card__item" data-card="8" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="две пары карт одного достоинства">Две пары</span>
+          </div>
+          <div class="card__item" data-card="9" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="две карты одного достоинства">Пара</span>
+          </div>
+          <div class="card__item" data-card="10" tabindex="0" role="button">
+            <svg class="card__image"><use xlink:href=""></use></svg>
+            <span class="card__title" data-desc="ни одна из вышеописанных комбинаций">
+              Старшая карта
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup" role="dialog" aria-modal="true" aria-labelledby="dialog__label">
+      <button class="popup__close" type="button" aria-label="Закрыть">
+        <span class="popup__close-inner"></span>
+      </button>
+      <svg class="popup__image"><use xlink:href=""></use></svg>
+      <h2 class="popup__title" id="dialog__label"></h2>
+      <p class="popup__desc"></p>
+    </div>
+  </body>
 </html>

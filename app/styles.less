@@ -1,7 +1,7 @@
 @main-color: #449953;
 @bg: radial-gradient(#367a42, #115c38);
 @i: 2;
-body{
+body {
   width: 100%;
   height: 100%;
   font-family: 'Segoe UI', Helvetica, serif;
@@ -11,15 +11,15 @@ body{
   -webkit-text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.hidden{
+.hidden {
   display: none;
 }
-.bg{
+.bg {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -30,23 +30,23 @@ body{
   text-align: center;
   background-image: @bg;
 }
-.title{
+.title {
   margin-top: 2.5%;
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.2;
   color: @main-color;
 }
-.container{
+.container {
   width: 95%;
   margin-bottom: 2%;
 }
-.card{
-  &__list{
+.card {
+  &__list {
     display: flex;
     flex-wrap: wrap;
   }
-  &__item{
+  &__item {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -56,30 +56,30 @@ body{
     cursor: pointer;
     outline: none;
     &:focus,
-    &:active{
-      .card__title{
-        background-image: linear-gradient(to top,  desaturate(#30753d, 5%), saturate(#298E52, 5%));
+    &:active {
+      .card__title {
+        background-image: linear-gradient(to top, desaturate(#30753d, 5%), saturate(#298e52, 5%));
       }
     }
   }
-  &__image{
+  &__image {
     position: absolute;
     width: 100%;
     pointer-events: none;
   }
-  &__title{
+  &__title {
     position: relative;
     margin-top: auto;
     padding-top: 1.5vmin;
     padding-bottom: 1.5vmin;
     font-weight: 100;
     line-height: 1;
-    background-image: linear-gradient(to bottom,  desaturate(#30753d, 5%), saturate(#298E52, 5%));
+    background-image: linear-gradient(to bottom, desaturate(#30753d, 5%), saturate(#298e52, 5%));
     clip-path: polygon(90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%, 10% 0);
     pointer-events: none;
   }
 }
-.popup{
+.popup {
   position: fixed;
   display: flex;
   text-align: center;
@@ -87,11 +87,11 @@ body{
   border: 2px solid @main-color;
   border-radius: 15px;
   transform: scale(0);
-  &.--open{
-    transition: transform .33s ease-in-out;
+  &.--open {
+    transition: transform 0.33s ease-in-out;
     transform: scale(1);
   }
-  &__close{
+  &__close {
     position: absolute;
     top: 0;
     right: 0;
@@ -100,10 +100,10 @@ body{
     border: none;
     cursor: pointer;
     outline-color: @main-color;
-    &:active{
-      transform: scale(.9);
+    &:active {
+      transform: scale(0.9);
     }
-    &-inner{
+    &-inner {
       position: absolute;
       top: 15%;
       left: 15%;
@@ -113,7 +113,7 @@ body{
       border-radius: 50%;
     }
     &:before,
-    &:after{
+    &:after {
       content: '';
       position: absolute;
       top: ~'calc((100% - 2px)/2)';
@@ -122,32 +122,33 @@ body{
       height: 2px;
       background-color: @main-color;
     }
-    &:before{
-      transform: rotate3d(0,0,1,45deg);
+    &:before {
+      transform: rotate3d(0, 0, 1, 45deg);
     }
-    &:after{
-      transform: rotate3d(0,0,1,-45deg);
+    &:after {
+      transform: rotate3d(0, 0, 1, -45deg);
     }
   }
-  &__image{
+  &__image {
     position: relative;
   }
-  &__title{
+  &__title {
     font-weight: 400;
     color: @main-color;
   }
-  &__desc{
+  &__desc {
     font-weight: 100;
     font-style: italic;
     line-height: 1;
   }
 }
-.preload{
+.preload {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 2;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -156,10 +157,10 @@ body{
   font-weight: 100;
   text-align: center;
   background-image: @bg;
-  &__inner{
+  &__inner {
     width: 80%;
   }
-  &__dot{
+  &__dot {
     display: inline-block;
     width: 5px;
     height: 5px;
@@ -172,32 +173,40 @@ body{
       .loop(@i + 1);
       @n: @i - 1;
       &:nth-of-type(@{i}) {
-        -webkit-animation-delay: unit((.33 * @n), s);
-        animation-delay: unit((.33 * @n), s);
+        -webkit-animation-delay: unit((0.33 * @n), s);
+        animation-delay: unit((0.33 * @n), s);
       }
     }
     .loop(@i);
   }
 }
-@media screen and (orientation: portrait){
-  .title{
+
+.language {
+  display: block;
+  width: 80%;
+  max-width: 200px;
+  margin-top: 30px;
+}
+
+@media screen and (orientation: portrait) {
+  .title {
     font-size: 5.5vmin;
   }
-  .subtitle{
+  .subtitle {
     font-size: 3vmin;
   }
-  .container{
+  .container {
     height: 82%;
   }
-  .card{
-    &__item{
+  .card {
+    &__item {
       width: 50%;
     }
-    &__image{
+    &__image {
       top: 5%;
       height: 90%;
     }
-    &__title{
+    &__title {
       width: 60%;
       font-size: 3.5vmin;
     }
@@ -227,45 +236,45 @@ body{
     }
   }
 }
-@media screen and (orientation: landscape){
-  .title{
+@media screen and (orientation: landscape) {
+  .title {
     font-size: 7vmin;
   }
-  .subtitle{
+  .subtitle {
     font-size: 3.8vmin;
   }
-  .container{
+  .container {
     height: 70%;
   }
-  .card{
-    &__item{
+  .card {
+    &__item {
       width: 20%;
     }
-    &__image{
+    &__image {
       height: 70%;
     }
-    &__title{
+    &__title {
       width: 90%;
       font-size: 3vmin;
     }
   }
-  .popup{
+  .popup {
     top: 2.5%;
     left: 1.5%;
     align-items: center;
     width: 97%;
     height: 95%;
-    &__close{
+    &__close {
       width: 15vh;
       height: 15vh;
     }
-    &__image{
+    &__image {
       flex-grow: 1;
       flex-shrink: 0;
       width: 60%;
       height: 100%;
     }
-    &__title{
+    &__title {
       flex-grow: 1;
       flex-shrink: 0;
       width: 40%;
@@ -273,7 +282,7 @@ body{
       margin-right: 9.5%;
       font-size: 7vmin;
     }
-    &__desc{
+    &__desc {
       flex-grow: 1;
       flex-shrink: 0;
       width: 40%;
@@ -290,6 +299,6 @@ body{
     opacity: 1;
   }
   100% {
-    opacity: .5;
+    opacity: 0.5;
   }
 }

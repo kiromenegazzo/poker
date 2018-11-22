@@ -1,5 +1,8 @@
 import './styles.less';
 import './sprite.svg';
+import dictionary from './intl';
+
+// TODO:refactor to preact
 
 const Poker = function () {
   this.popup = document.querySelector('.popup');
@@ -15,6 +18,8 @@ const Poker = function () {
 
   this.isMobile = navigator.userAgent.match(/iPad|iPhone|Mobile|Android|Windows Phone/g);
   this.focusedEl = null;
+  this.languages = ['ru', 'en'];
+  this.language = 'ru';
 
   this.setCardSize = this.setCardSize.bind(this);
   this.checkUpdate = this.checkUpdate.bind(this);
@@ -56,7 +61,6 @@ Poker.prototype.setPopupContent = function (index) {
 
 Poker.prototype.openPopup = function () {
   if (this.focusedEl !== null) this.popupClose.focus();
-  console.log(this.popup);
   this.popup.classList.add('--open');
 };
 
@@ -70,9 +74,10 @@ Poker.prototype.setTransformOrigin = function (x, y) {
 };
 
 Poker.prototype.buildPopup = function () {
-  const x = Math.round((event.pageX / window.innerWidth) * 100) || '50';
-  const y = Math.round((event.pageY / window.innerHeight) * 100) || '50';
-  const cardItem = event.target;
+  const { pageX, pageY, target } = event;
+  const x = Math.round((pageX / window.innerWidth) * 100) || '50';
+  const y = Math.round((pageY / window.innerHeight) * 100) || '50';
+  const cardItem = target;
 
   this.setTransformOrigin(x, y);
   this.setPopupContent(cardItem.getAttribute('data-card'));
@@ -113,12 +118,20 @@ Poker.prototype.preloadSprite = function () {
     });
 };
 
+Poker.prototype.selectLanguage = function (lang) {
+  this.language = lang;
+};
+
 Poker.prototype.checkUpdate = function () {
-  if (window.applicationCache) {
-    if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
-      window.applicationCache.swapCache();
-      if (confirm('A new version of this site is available. Load it?')) {
-        window.location.reload();
+  const { applicationCache, location } = window;
+  const { status, UPDATEREADY } = applicationCache;
+
+  if (applicationCache) {
+    if (status === UPDATEREADY) {
+      applicationCache.swapCache();
+
+      if (confirm('A new version of this site is available. Load it?')) { //eslint-disable-line
+        location.reload();
       }
     }
   }
@@ -126,5 +139,11 @@ Poker.prototype.checkUpdate = function () {
 
 window.addEventListener('DOMContentLoaded', () => {
   const poker = new Poker();
-  poker.preloadSprite();
+  // poker.preloadSprite();
+
+  const select = document.querySelector('select');
+
+  select.addEventListener('change', function () {
+    console.log(this.value);
+  });
 });
