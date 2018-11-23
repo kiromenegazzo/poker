@@ -1,33 +1,38 @@
 /* eslint-disable */
 
 const dictionary = {
-  'ru': 'en',
-
-  'Покерные комбинации': 'Poker hands',
-  'Загрузка': 'Loading',
-  'Нажмите, чтобы узнать подробнее о каждой комбинации': 'Click to learn more about combination',
-
-  '5 старших карт одной масти': '5 high cards of one suit',
-  'любые 5 карт одной масти по порядку': 'any 5 cards of one suit in row',
-  '4 карты одного достоинства': '4 cards of one quality',
-  'одна тройка и одна пара': 'Three of a kind & one pair',
-  '5 карт одной масти': '5 cards of one suit',
-  '5 карт по порядку любых мастей': '5 cards of any suits',
-  '3 карты одного достоинства': '3 cards of one quality',
-  'две пары карт одного достоинства': '2 card pairs of one quality',
-  'две карты одного достоинства': '2 cards of one quality',
-  'ни одна из вышеописанных комбинаций': 'none of combinations',
-
-  'Роял-флэш': 'Royal flush',
-  'Стрит-флеш': 'Straight flush',
-  'Каре': 'Four of a kind',
-  'Фулл-хаус': 'Full house',
-  'Флеш': 'Flush',
-  'Стрит': 'Straight',
-  'Тройка': 'Three of a kind',
-  'Две пары': 'Two pairs',
-  'Пара': 'One pair',
-  'Старшая карта': 'High card',
+  ru: {
+    title: 'Покерные комбинации',
+    text: 'Нажмите, чтобы узнать подробнее о каждой комбинации',
+    hands: [
+      { name: 'Роял-флэш', description: '5 старших карт одной масти' },
+      { name: 'Стрит-флеш', description: 'любые 5 карт одной масти по порядку' },
+      { name: 'Каре', description: '4 карты одного достоинства' },
+      { name: 'Фулл-хаус', description: 'одна тройка и одна пара' },
+      { name: 'Флеш', description: '5 карт одной масти' },
+      { name: 'Стрит', description: '5 карт по порядку любых мастей' },
+      { name: 'Тройка', description: '3 карты одного достоинства' },
+      { name: 'Две пары', description: 'две пары карт одного достоинства' },
+      { name: 'Пара', description: 'две карты одного достоинства' },
+      { name: 'Старшая карта', description: 'ни одна из вышеописанных комбинаций' }
+    ]
+  },
+  en: {
+    title: 'Poker hands',
+    text: 'Click to learn more about combination',
+    hands: [
+      { name: 'Royal flush', description: '5 high cards of one suit' },
+      { name: 'Straight flush', description: 'any 5 cards of one suit in row' },
+      { name: 'Four of a kind', description: '4 cards of one quality' },
+      { name: 'Full house', description: 'Three of a kind & one pair' },
+      { name: 'Flush', description: '5 cards of one suit' },
+      { name: 'Straight', description: '5 cards of any suits' },
+      { name: 'Three of a kind', description: '3 cards of one quality' },
+      { name: 'Two pairs', description: '2 card pairs of one quality' },
+      { name: 'One pair', description: '2 cards of one quality' },
+      { name: 'High card', description: 'none of combinations' }
+    ]
+  }
 };
 
 export default dictionary;

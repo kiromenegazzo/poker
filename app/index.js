@@ -1,10 +1,84 @@
 import './styles.less';
 import './sprite.svg';
+import { h, render, Component } from 'preact';
+import { Poker } from './Poker';
+import { Welcome } from './Welcome';
+import { Popup } from './Popup';
 import dictionary from './intl';
 
 // TODO:refactor to preact
+const root = document.getElementById('root');
 
-const Poker = function () {
+class App extends Component {
+  state = {
+    dictionary,
+    languages: ['ru', 'en'],
+    language: 'ru',
+    hands: [...dictionary.ru.hands],
+    hand: {},
+    isLoaded: false,
+    coords: {},
+  };
+
+  componentDidMount() {
+    setTimeout(() => this.setState({ isLoaded: true }), 3000);
+  }
+
+  componentDidUpdate() {
+    console.log('state is ', this.state); // eslint-disable-line
+  }
+
+  handleChangeLanguage = (event) => {
+    this.setState({ language: event.target.value });
+  };
+
+  handleClick = (event, index) => {
+    const { hands } = this.state;
+    const { pageX, pageY } = event;
+    const { innerWidth, innerHeight } = window;
+    const x = Math.round((pageX / innerWidth) * 100) || '50';
+    const y = Math.round((pageY / innerHeight) * 100) || '50';
+
+    const coords = { x, y };
+
+    this.setState({ coords, hand: hands[index] });
+  };
+
+  render() {
+    const {
+      language, languages, hands, hand, isLoaded, dictionary, coords,
+    } = this.state;
+    const { title, text } = dictionary[language];
+
+    return (
+      <div className="bg">
+        <select
+          className="language"
+          name="language"
+          id="language"
+          value={language}
+          onChange={this.handleChangeLanguage}
+        >
+          {languages.map(lang => (
+            <option value={lang}>{lang}</option>
+          ))}
+        </select>
+        <h1 className="title">{title}</h1>
+        <p className="subtitle">{text}</p>
+        {isLoaded ? (
+          <Poker hands={hands} onClick={this.handleClick} />
+        ) : (
+          <Welcome language={language} languages={languages} />
+        )}
+        <Popup hand={hand} coords={coords} />
+      </div>
+    );
+  }
+}
+
+render(<App />, root);
+
+/* const Poker = function () {
   this.popup = document.querySelector('.popup');
   this.popupClose = document.querySelector('.popup__close');
   this.popupImage = document.querySelector('.popup__image use');
@@ -69,7 +143,7 @@ Poker.prototype.closePopup = function () {
   this.popup.classList.remove('--open');
 };
 
-Poker.prototype.setTransformOrigin = function (x, y) {
+Poker.prototype.setcoords = function (x, y) {
   this.popup.style.cssText = `-webkit-transform-origin: ${x}% ${y}% 0; transform-origin: ${x}% ${y}% 0;`;
 };
 
@@ -79,7 +153,7 @@ Poker.prototype.buildPopup = function () {
   const y = Math.round((pageY / window.innerHeight) * 100) || '50';
   const cardItem = target;
 
-  this.setTransformOrigin(x, y);
+  this.setcoords(x, y);
   this.setPopupContent(cardItem.getAttribute('data-card'));
   this.focusedEl = !this.isMobile ? cardItem : null;
   this.openPopup();
@@ -146,4 +220,4 @@ window.addEventListener('DOMContentLoaded', () => {
   select.addEventListener('change', function () {
     console.log(this.value);
   });
-});
+}); */

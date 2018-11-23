@@ -12,7 +12,6 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.less$/,
-        //use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'postcss-loader', 'less-loader']

@@ -1,9 +1,15 @@
 {
-  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "extends": ["airbnb"] ,
   "env": {
     "browser": true
   },
   "rules": {
-    "no-restricted-globals": ["error", "event", "fdescribe"]
+    "no-restricted-globals": ["error", "event", "fdescribe"],
+    "import/prefer-default-export": false,
+    "react/prop-types": false,
+    "react/prefer-stateless-function": "off",
+    "react/react-in-jsx-scope": false,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

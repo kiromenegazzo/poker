@@ -162,13 +162,15 @@ body {
   }
   &__dot {
     display: inline-block;
-    width: 5px;
-    height: 5px;
-    margin-left: 5px;
+    width: 5vmin;
+    height: 5vmin;
     background-color: #fff;
     border-radius: 50%;
     opacity: 0;
     animation: loading 1s infinite both;
+    &:not(:last-of-type) {
+      margin-right: 5vmin;
+    }
     .loop (@i) when (4 > @i) {
       .loop(@i + 1);
       @n: @i - 1;
