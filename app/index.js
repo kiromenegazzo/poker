@@ -104,7 +104,7 @@ Poker.prototype.preloadSprite = function () {
   const body = document.body;
   const preload = document.querySelector('.preload');
 
-  fetch('sprite.svg').then(res => res.text()).then((res) => {
+  return fetch('sprite.svg').then(res => res.text()).then((res) => {
     body.removeChild(preload);
     this.popup.insertAdjacentHTML('afterEnd', res);
     this.setHref();
