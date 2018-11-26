@@ -1,7 +1,6 @@
 import { h, Component } from 'preact'; // eslint-disable-line
 import PropTypes from 'prop-types';
-
-const ENTER_KEY_CODE = 13;
+import { ENTER_KEY_CODE } from '../helpers';
 
 class Poker extends Component {
   static propTypes = {
