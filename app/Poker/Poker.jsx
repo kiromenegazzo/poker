@@ -1,6 +1,24 @@
 import { h, Component } from 'preact'; // eslint-disable-line
+import PropTypes from 'prop-types';
+
+const ENTER_KEY_CODE = 13;
 
 class Poker extends Component {
+  static propTypes = {
+    hands: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    onClick: PropTypes.func.isRequired,
+  };
+
+  handleKeyDown = (event, index) => {
+    const { keyCode } = event;
+    const { onClick } = this.props;
+
+    if (keyCode === ENTER_KEY_CODE) {
+      event.preventDefault();
+      onClick(event, index);
+    }
+  };
+
   render() {
     const { hands, onClick } = this.props;
 
@@ -8,13 +26,17 @@ class Poker extends Component {
       <div className="container">
         <div className="card__list">
           {hands.map(({ name }, index) => (
-            <div className="card__item" tabIndex="0" role="button" onClick={event => onClick(event, index)}>
+            <div
+              className="card__item"
+              tabIndex="0"
+              role="button"
+              onClick={event => onClick(event, index)}
+              onKeyDown={event => this.handleKeyDown(event, index)}
+            >
               <svg className="card__image">
-                <use xlinkHref="" />
+                <use xlinkHref={`#sprite_${index + 1}`} />
               </svg>
-              <span className="card__title">
-                {name}
-              </span>
+              <span className="card__title">{name}</span>
             </div>
           ))}
         </div>

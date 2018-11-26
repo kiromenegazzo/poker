@@ -22,10 +22,14 @@ module.exports = {
         use: ['babel-loader', 'eslint-loader'],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpg|gif)$/,
         use: [
           'file-loader?name=[name].[ext]',
         ],
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
       },
       {
         test: /\.(woff|woff2)$/,
