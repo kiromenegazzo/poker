@@ -1,5 +1,6 @@
 {
   "parser": "babel-eslint",
+  "plugins": ["react"],
   "extends": ["airbnb"] ,
   "env": {
     "browser": true
@@ -7,9 +8,12 @@
   "rules": {
     "no-restricted-globals": ["error", "event", "fdescribe"],
     "import/prefer-default-export": false,
-    "react/prop-types": false,
-    "react/prefer-stateless-function": "off",
-    "react/react-in-jsx-scope": false,
+    "react/forbid-prop-types": 1,
+    "react/no-unused-prop-types": 1,
+    "react/require-default-props": 1,
+    "react/prop-types": 1,
+    "react/prefer-stateless-function": 0,
+    "react/react-in-jsx-scope": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

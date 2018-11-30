@@ -1,79 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru" manifest="cache.manifest">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,shrink-to-fit=no">
-    <meta name="theme-color" content="#449953">
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"
+    />
     <title>Покерные комбинации</title>
-    <meta name="apple-mobile-web-app-title" content="Poker Hand">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#449953">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
-    <link rel="manifest" href="./manifest.json">
-    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#449953">
-    <link rel="apple-touch-startup-image" href="./apple-touch-icon.png">
-    <style>body{width:100%;height:100%;font-family:Segoe UI,Helvetica,serif;color:#fff;-webkit-user-select:none;user-select:none;touch-action:none;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}*{margin:0;padding:0;box-sizing:border-box}.hidden{display:none}.bg{position:fixed;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;-webkit-justify-content:space-around;justify-content:space-around;width:100%;height:100%;text-align:center;background-image:radial-gradient(#367a42,#115c38)}.title{margin-top:2.5%;font-weight:700;text-transform:uppercase;line-height:1.2;color:#449953}.container{width:95%;margin-bottom:2%}.card__list{-webkit-flex-wrap:wrap;flex-wrap:wrap}.card__item,.card__list{display:-webkit-flex;display:flex}.card__item{position:relative;-webkit-flex-direction:column;flex-direction:column;-webkit-justify-content:center;justify-content:center;-webkit-align-items:center;align-items:center;text-align:center;cursor:pointer;outline:none}.card__item:active .card__title,.card__item:focus .card__title{background-image:linear-gradient(0deg,#347140,#249351)}.card__image{position:absolute;width:100%}.card__title{position:relative;margin-top:auto;padding-top:1.5vmin;padding-bottom:1.5vmin;font-weight:100;line-height:1;background-image:linear-gradient(180deg,#347140,#249351);-webkit-clip-path:polygon(90% 0,100% 50%,90% 100%,10% 100%,0 50%,10% 0);clip-path:polygon(90% 0,100% 50%,90% 100%,10% 100%,0 50%,10% 0)}.popup{position:fixed;display:-webkit-flex;display:flex;text-align:center;background-image:radial-gradient(#367a42,#115c38);border:2px solid #449953;border-radius:15px;-webkit-transform:scale(0);transform:scale(0)}.popup--open{transition:-webkit-transform .33s ease-in-out;transition:transform .33s ease-in-out;transition:transform .33s ease-in-out,-webkit-transform .33s ease-in-out;-webkit-transform:scale(1);transform:scale(1)}.popup__close{position:absolute;top:0;right:0;z-index:1;background-color:transparent;border:none;cursor:pointer;outline-color:#449953}.popup__close:active{-webkit-transform:scale(.9);transform:scale(.9)}.popup__close-inner{position:absolute;top:15%;left:15%;width:70%;height:70%;border:2px solid #449953;border-radius:50%}.popup__close:after,.popup__close:before{content:"";position:absolute;top:calc((100% - 2px)/2);left:30%;width:40%;height:2px;background-color:#449953}.popup__close:before{-webkit-transform:rotate(45deg);transform:rotate(45deg)}.popup__close:after{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.popup__image{position:relative}.popup__title{font-weight:400;color:#449953}.popup__desc{font-weight:100;font-style:italic;line-height:1}.preload{position:fixed;top:0;left:0;z-index:2;display:-webkit-flex;display:flex;-webkit-justify-content:center;justify-content:center;-webkit-align-items:center;align-items:center;width:100%;height:100%;font-size:20px;font-weight:100;text-align:center;background-image:radial-gradient(#367a42,#115c38)}.preload__inner{width:80%}.preload__dot{display:inline-block;width:5px;height:5px;margin-left:5px;background-color:#fff;border-radius:50%;opacity:0;-webkit-animation:a 1s infinite both;animation:a 1s infinite both}.preload__dot:nth-of-type(3){-webkit-animation-delay:.66s;animation-delay:.66s}.preload__dot:nth-of-type(2){-webkit-animation-delay:.33s;animation-delay:.33s}@media screen and (orientation:portrait){.title{font-size:5.5vmin}.subtitle{font-size:3vmin}.container{height:82%}.card__item{width:50%}.card__image{top:5%;height:90%}.card__title{width:60%;font-size:3.5vmin}.popup{top:1.5%;left:2.5%;-webkit-flex-direction:column;flex-direction:column;-webkit-justify-content:center;justify-content:center;-webkit-align-items:center;align-items:center;width:95%;height:97%}.popup__close{width:10vh;height:10vh}.popup__image{width:100%;height:50%}.popup__title{font-size:12vmin}.popup__desc{width:90%;font-size:7vmin}}@media screen and (orientation:landscape){.title{font-size:7vmin}.subtitle{font-size:3.8vmin}.container{height:70%}.card__item{width:20%}.card__image{height:70%}.card__title{width:90%;font-size:3vmin}.popup{top:2.5%;left:1.5%;-webkit-align-items:center;align-items:center;width:97%;height:95%}.popup__close{width:15vh;height:15vh}.popup__image{-webkit-flex-grow:1;flex-grow:1;-webkit-flex-shrink:0;flex-shrink:0;width:60%;height:100%}.popup__title{margin-top:-20%;margin-right:9.5%;font-size:7vmin}.popup__desc,.popup__title{-webkit-flex-grow:1;flex-grow:1;-webkit-flex-shrink:0;flex-shrink:0;width:40%}.popup__desc{margin-top:20%;margin-left:-50%;padding-right:5%;padding-left:5%;font-size:5vmin}}@-webkit-keyframes a{0%{opacity:1}to{opacity:.5}}</style>
-</head>
-<body ontouchstart="">
-<div class="preload">
-    <p class="preload__text">Загрузка<span class="preload__dot"></span><span class="preload__dot"></span><span class="preload__dot"></span></p>
-</div>
-<div class="bg">
-    <h1 class="title">Покерные комбинации</h1>
-    <p class="subtitle">Нажмите, чтобы узнать подробнее о каждой комбинации</p>
-    <div class="container">
-        <div class="card__list">
-            <div class="card__item" data-card="1" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="5 старших карт одной масти">Роял-флэш</span>
-            </div>
-            <div class="card__item" data-card="2" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="любые пять карт одной масти по порядку">Стрит-флеш</span>
-            </div>
-            <div class="card__item" data-card="3" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="четыре карты одного достоинства">Каре</span>
-            </div>
-            <div class="card__item" data-card="4" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="одна тройка и одна пара">Фулл-хаус</span>
-            </div>
-            <div class="card__item" data-card="5" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="пять карт одной масти">Флеш</span>
-            </div>
-            <div class="card__item" data-card="6" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="пять карт по порядку любых мастей">Стрит</span>
-            </div>
-            <div class="card__item" data-card="7" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="три карты одного достоинства">Тройка</span>
-            </div>
-            <div class="card__item" data-card="8" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="две пары карт одного достоинства">Две пары</span>
-            </div>
-            <div class="card__item" data-card="9" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="две карты одного достоинства">Пара</span>
-            </div>
-            <div class="card__item" data-card="10" tabindex="0" role="button">
-                <svg class="card__image"><use xlink:href=""></use></svg>
-                <span class="card__title" data-desc="ни одна из вышеописанных комбинаци">Старшая карта</span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="popup" role="dialog" aria-modal="true" aria-labelledby="dialog__label">
-    <button class="popup__close" type="button" aria-label="Закрыть"><span class="popup__close-inner"></span></button>
-    <svg class="popup__image"><use xlink:href=""></use></svg>
-    <h2 class="popup__title" id="dialog__label"></h2>
-    <p class="popup__desc"></p>
-</div>
-<script>"use strict";var Poker=function(){var e=document.querySelector(".popup"),t=document.querySelector(".popup__close"),n=document.querySelector(".card__list"),o=!!navigator.userAgent.match(/iPad|iPhone|Mobile|Android|Windows Phone/g),i=null,a=function(){var e=document.getElementsByClassName("card__item"),t=document.querySelector(".container"),n=t.clientHeight,o=window.innerWidth<window.innerHeight?5:2;[].forEach.call(e,function(e){e.style.height=n/o+"px"})},r=function(e){var t=document.querySelector(".popup__image use"),n=document.querySelector(".popup__title"),o=document.getElementsByClassName("card__title")[e-1],i=document.querySelector(".popup__desc");t.setAttribute("xlink:href","#"+e),n.innerText=""+o.innerText,i.innerText=""+o.getAttribute("data-desc")},d=function(){null!==i&&t.focus(),e.classList.add("popup--open")},c=function(){null!==i&&i.focus(),e.classList.remove("popup--open")},u=function(t,n){e.style.cssText="-webkit-transform-origin: "+t+"% "+n+"% 0;\n                                    transform-origin: "+t+"% "+n+"% 0;"},l=function(){var e=Math.round(event.pageX/window.innerWidth*100)||"50",t=Math.round(event.pageY/window.innerHeight*100)||"50",n=event.target;"svg"==event.target.tagName||"card__title"==event.target.className?n=event.target.parentNode:"use"==event.target.tagName&&(n=event.target.parentNode.parentNode),u(e,t),r(n.getAttribute("data-card")),i=o?null:n,d()},s=function(){var e=event.type;"keydown"===e?13!==event.keyCode&&32!==event.keyCode||l():"click"===e&&l()},p=function(){var e=document.querySelectorAll(".card__image use");[].forEach.call(e,function(e,t){e.setAttribute("xlink:href","#"+(t+1))})};this.preloadSprite=function(){var t=document.body,n=document.querySelector(".preload"),o=new XMLHttpRequest;o.open("GET","img/sprite.svg",!0),o.send(),o.onload=function(o){t.removeChild(n),e.insertAdjacentHTML("afterEnd",o.target.response),p()}};var v=function(){window.applicationCache&&window.applicationCache.status==window.applicationCache.UPDATEREADY&&(window.applicationCache.swapCache(),confirm("A new version of this site is available. Load it?")&&window.location.reload())};t.addEventListener("click",c),n.addEventListener("click",s),n.addEventListener("keydown",s),e.addEventListener("keydown",function(e){"9"==e.keyCode?e.preventDefault():"27"==e.keyCode&&c()}),a(),window.addEventListener("resize",a),window.applicationCache.addEventListener("updateready",v)};window.addEventListener("DOMContentLoaded",function(){var e=new Poker;e.preloadSprite()});</script>
-</body>
+  </head>
+  <body ontouchstart="">
+    <div id="root"></div>
+  <script type="text/javascript" src="main.bundle.js"></script></body>
 </html>

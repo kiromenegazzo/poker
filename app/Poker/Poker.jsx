@@ -33,7 +33,7 @@ class Poker extends Component {
               onKeyDown={event => this.handleKeyDown(event, index)}
             >
               <svg className="card__image">
-                <use xlinkHref={`#sprite_${index + 1}`} />
+                <use xlinkHref={`#${index + 1}`} />
               </svg>
               <span className="card__title">{name}</span>
             </div>

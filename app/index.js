@@ -1,9 +1,9 @@
 import './styles.less';
 import { h, render, Component } from 'preact'; //eslint-disable-line
-import './sprite.svg';
 import { Poker } from './Poker';
 import { Welcome } from './Welcome';
 import { Popup } from './Popup';
+import { Language } from './Language';
 import dict from './intl';
 
 const root = document.getElementById('root');
@@ -17,18 +17,33 @@ class App extends Component {
     hand: null,
     isLoaded: false,
     coordinates: null,
+    sprite: null,
   };
 
   componentDidMount() {
-    setTimeout(() => this.setState({ isLoaded: true }), 3000);
+    this.fetchSprite();
   }
 
   componentDidUpdate() {
     console.log('state is ', this.state); // eslint-disable-line
   }
 
+  fetchSprite = () => {
+    fetch('./sprite.svg')
+      .then(res => res.text())
+      .then((res) => {
+        this.setState({
+          sprite: res,
+          isLoaded: true,
+        });
+      });
+  };
+
   handleChangeLanguage = (event) => {
-    this.setState({ language: event.target.value });
+    this.setState({
+      language: event.target.value,
+      hands: [...dict[event.target.value].hands],
+    });
   };
 
   handleClick = (event, index) => {
@@ -40,7 +55,7 @@ class App extends Component {
 
     const coordinates = { x, y };
 
-    this.setState({ coordinates, hand: { ...hands[index], src: `#sprite_${index + 1}` } });
+    this.setState({ coordinates, hand: { ...hands[index], src: `#${index + 1}` } });
   };
 
   handleClose = () => {
@@ -49,23 +64,21 @@ class App extends Component {
 
   render() {
     const {
-      language, languages, hands, hand, isLoaded, dictionary, coordinates,
+      language,
+      languages,
+      hands,
+      hand,
+      isLoaded,
+      dictionary,
+      coordinates,
+      sprite,
     } = this.state;
     const { title, text } = dictionary[language];
 
     return (
       <div className="bg">
-        <select
-          className="language"
-          name="language"
-          id="language"
-          value={language}
-          onChange={this.handleChangeLanguage}
-        >
-          {languages.map(lang => (
-            <option value={lang}>{lang}</option>
-          ))}
-        </select>
+        {sprite && <span className="hidden" dangerouslySetInnerHTML={{ __html: sprite }} />}
+        <Language language={language} languages={languages} onChange={this.handleChangeLanguage} />
         <h1 className="title">{title}</h1>
         <p className="subtitle">{text}</p>
         {isLoaded ? (

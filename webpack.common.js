@@ -9,7 +9,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Rpo',
       template: './app/index.html',
     }),
 
@@ -17,19 +16,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|svg|gif)$/,
         use: [
           'file-loader?name=[name].[ext]',
         ],
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-sprite-loader',
       },
       {
         test: /\.(woff|woff2)$/,
@@ -44,6 +34,6 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'),
   },
 };
