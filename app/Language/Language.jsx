@@ -35,6 +35,7 @@ class Language extends Component {
                   this.handleClick();
                 }}
               />
+              <span />
               {lang}
             </label>
           ))}
