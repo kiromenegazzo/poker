@@ -74,7 +74,18 @@ class App extends Component {
       coordinates,
       sprite,
     } = this.state;
-    const { title, text } = dictionary[language];
+    const { title, text, error } = dictionary[language];
+
+    if (!window.fetch) {
+      return (
+        <div className="bg">
+          <div className="error">
+            <span role="img" aria-label="error">❌️</span>
+            {error}
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="bg">

@@ -4,6 +4,7 @@ const dictionary = {
   ru: {
     title: 'Покерные комбинации',
     text: 'Нажмите, чтобы узнать подробнее о каждой комбинации',
+    error: 'Пожалуйста, используйте более современный браузер',
     hands: [
       { name: 'Роял-флэш', description: '5 старших карт одной масти' },
       { name: 'Стрит-флеш', description: 'любые 5 карт одной масти по порядку' },
@@ -20,6 +21,7 @@ const dictionary = {
   en: {
     title: 'Poker hands',
     text: 'Click to learn more about combination',
+    error: 'Please, use one of modern browsers',
     hands: [
       { name: 'Royal flush', description: '5 high cards of one suit' },
       { name: 'Straight flush', description: 'any 5 cards of one suit in row' },
