@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'; //eslint-disable-line
+import { h, Component } from 'preact';
 import PropTypes from 'prop-types';
 
 class Language extends Component {
@@ -24,8 +24,9 @@ class Language extends Component {
       <div className={`language ${isOpen ? '--open' : ''}`}>
         <div className="language__list">
           {languages.map(lang => (
-            <label className="language__item">
+            <label className="language__item" htmlFor={lang}>
               <input
+                id={lang}
                 type="radio"
                 name="language"
                 value={lang}

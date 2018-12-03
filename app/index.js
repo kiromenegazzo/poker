@@ -1,10 +1,11 @@
 import './styles.less';
-import { h, render, Component } from 'preact'; //eslint-disable-line
+import { h, render, Component } from 'preact';
 import { Poker } from './Poker';
 import { Welcome } from './Welcome';
 import { Popup } from './Popup';
 import { Language } from './Language';
 import dict from './intl';
+import url from './sprite.svg';
 
 const root = document.getElementById('root');
 
@@ -29,7 +30,7 @@ class App extends Component {
   }
 
   fetchSprite = () => {
-    fetch('./sprite.svg')
+    fetch(url)
       .then(res => res.text())
       .then((res) => {
         this.setState({
