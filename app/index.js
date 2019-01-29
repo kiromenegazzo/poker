@@ -89,7 +89,7 @@ class App extends Component {
 
     return (
       <div className="bg">
-        {sprite && <span className="hidden" dangerouslySetInnerHTML={{ __html: sprite }} />}
+        {sprite && <span className="hidden" dangerouslySetInnerHTML={{ __html: sprite }} /> /*eslint-disable-line*/}
         <Language language={language} languages={languages} onChange={this.handleChangeLanguage} />
         <h1 className="title">{title}</h1>
         <p className="subtitle">{text}</p>

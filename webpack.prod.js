@@ -1,17 +1,14 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-const webpack = require('webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = merge(common, {
-  plugins: [
-    new BundleAnalyzerPlugin()
-  ],
+  //plugins: [new BundleAnalyzerPlugin()],
   module: {
     rules: [
       {
         test: /\.less$/,
-        use: ['css-loader', 'postcss-loader', 'less-loader'],
+        use: ['css-loader', 'postcss-loader', 'less-loader']
       },
       {
         test: /\.(js|jsx)$/,
@@ -23,7 +20,7 @@ module.exports = merge(common, {
           }
         }
       }
-    ],
+    ]
   },
   mode: 'production'
 });

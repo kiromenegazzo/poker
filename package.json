@@ -13,8 +13,7 @@
   "eslintConfig": {
     "extends": "eslint-config-synacor"
   },
-  "devDependencies": {},
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-transform-react-jsx": "^7.1.6",
@@ -41,9 +40,7 @@
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "postcss-loader": "^3.0.0",
-    "preact": "^8.3.1",
     "prettier": "^1.15.2",
-    "prop-types": "^15.6.2",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.26.0",
@@ -51,5 +48,9 @@
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.4"
+  },
+  "dependencies": {
+    "preact": "^8.3.1",
+    "prop-types": "^15.6.2"
   }
 }
